@@ -35,16 +35,11 @@
             var self = this;
 
             this.element
-
-            // don't prevent default, that can be handled within create callback if needed
+                // don't prevent default, that can be handled within create callback if needed
                 .on(this.options.events, this.options.toggleSelector, function () {
                     var el = $(this);
                     el.data('isOpen') ? self.close(el) : self.open(el);
                 });
-
-            if (this.element.hasClass('initopen')) {
-                self.open(this.element);
-            }
 
             return;
         },
@@ -53,9 +48,8 @@
 
             var subMenu = this._getSubMenu(toggle),
                 isVisible = subMenu.is(':visible'),
-
-            // when not visible get height otherwise use previously calculated height
-            // so .stop() doesn't cause the wrong height to be calculated
+                // when not visible get height otherwise use previously calculated height
+                // so .stop() doesn't cause the wrong height to be calculated
                 height = isVisible ? subMenu.data('height') : subMenu.height();
 
             this.hideAll();
@@ -128,7 +122,7 @@
             var subMenu = toggle.find(this.options.subMenuSelector);
 
             // if toggle is anchor (common when menu is opened on click or touch event)
-            // we need to use find as menu will be a sibling.
+            // we need to use siblings as menu will be a sibling.
             if (!subMenu.length) {
                 subMenu = toggle.siblings(this.options.subMenuSelector);
             }
